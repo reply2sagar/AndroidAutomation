@@ -37,5 +37,6 @@ public class LaunchBrowser
         //select couple ..
         select.selectByVisibleText("Couple");
         driver.quit();
+        //quit the browser
     }
 }
