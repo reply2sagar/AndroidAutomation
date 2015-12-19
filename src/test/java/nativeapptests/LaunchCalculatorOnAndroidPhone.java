@@ -30,18 +30,18 @@ public class LaunchCalculatorOnAndroidPhone
         driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities) {
         };
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.findElement(By.name("3")).click();
+        driver.findElement(By.name("2")).click();
 
         driver.findElement(By.name("+")).click();
 
-        driver.findElement(By.name("5")).click();
+        driver.findElement(By.name("6")).click();
 
         driver.findElement(By.name("=")).click();
         WebElement txt= driver.findElement(By.className("android.widget.EditText"));
 
         String p = txt.getText();
         String replacement = p.replaceAll("\t|\n|\r", "");
-        Assert.assertTrue("",replacement.equalsIgnoreCase("3+5=8"));
+        Assert.assertTrue("",replacement.equalsIgnoreCase("2+6=8"));
         driver.quit();
         //quit the browser
     }
