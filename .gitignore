@@ -1,3 +1,4 @@
 *.xml
 out/
 target/
+.idea/
