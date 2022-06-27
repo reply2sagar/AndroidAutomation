@@ -16,7 +16,7 @@ public class GetGoogleKeywords {
 
         WebDriver driver = null;
 
-        System.setProperty("webdriver.chrome.driver", "F:\\selenium\\chromedriver2.2\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\Downloads\\chromedriver102.exe");
         System.out.println(System.getProperty("webdriver.chrome.driver"));
         driver = new ChromeDriver();
 
@@ -26,14 +26,19 @@ public class GetGoogleKeywords {
 
         try {
 
-            driver.get("https://www.google.co.in/preferences?hl=en-IN&fg=1");
-            driver.findElement(By.xpath("//div[text()='Never show Instant results.']")).click();
-            driver.findElement(By.xpath("//div[text()='Save']")).click();
+//            driver.get("https://www.google.co.in/preferences?hl=en-IN&fg=1");
+//            driver.findElement(By.xpath("//div[text()='Never show Instant results.']")).click();
+//            driver.findElement(By.xpath("//div[text()='Save']")).click();
 
             driver.get("https://www.google.co.in");
 
 //String x = driver.switchTo().frame(0).switchTo().frame(0).findElement(By.tagName("h3")).getText();//String x = driver.switchTo().frame(1).findElement(By.tagName("h3")).getText();//String x = driver.switchTo().frame("view").switchTo().frame(0).getPageSource();//System.out.println(x);
-            String str = "firefox";
+            String arrstr = "chrome#firefox";
+
+            for(int n=0;n<arrstr.split("#").length;n++){
+
+
+            String str = arrstr.split("#")[n];
             str = str.toLowerCase();
             String sub = "How to";
             String d = "";
@@ -53,18 +58,21 @@ public class GetGoogleKeywords {
 
                 driver.findElement(By.cssSelector("input[name=q]")).sendKeys(str + " " + sub + " " + x);
                 List<WebElement> li = driver.findElements(By.xpath("//ul[@role='listbox']//li"));
-
+                Thread.sleep(2000);
                 for (int co = 0; co < li.size(); co++) {
+                    try{
                     d = d + li.get(co).getText().replace(str,"").replace("how","How").trim() + " in " + str  + "\r\n";
+                }catch(Exception ex){}
+
                 }
 
 
-                driver.findElement(By.id("lst-ib")).clear();
+                driver.findElement(By.cssSelector("input[name=q]")).clear();
 
             }
 
             System.out.println(d);
-            String filePath = "f:\\videos\\" + str + ".txt";
+            String filePath = "C:\\Users\\PC\\Videos\\" + str + ".txt";
 
             if ((new File(filePath)).exists())
                 (new File(filePath)).delete();
@@ -80,7 +88,7 @@ public class GetGoogleKeywords {
             //driver.navigate();//driver.navigate("http://www.google.com");      }catch(Exception e){
 
             //System.out.println(e.getLocalizedMessage());                  e.printStackTrace(new PrintStream(System.out));
-
+            }
         } finally {
             driver.close();
             driver.quit();
