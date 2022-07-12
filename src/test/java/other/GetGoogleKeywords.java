@@ -30,10 +30,10 @@ public class GetGoogleKeywords {
 //            driver.findElement(By.xpath("//div[text()='Never show Instant results.']")).click();
 //            driver.findElement(By.xpath("//div[text()='Save']")).click();
 
-            driver.get("https://www.google.co.in");
+            driver.get("https://www.google.com");
 
 //String x = driver.switchTo().frame(0).switchTo().frame(0).findElement(By.tagName("h3")).getText();//String x = driver.switchTo().frame(1).findElement(By.tagName("h3")).getText();//String x = driver.switchTo().frame("view").switchTo().frame(0).getPageSource();//System.out.println(x);
-            String arrstr = "chrome#firefox";
+            String arrstr = "css";
 
             for(int n=0;n<arrstr.split("#").length;n++){
 
@@ -58,7 +58,7 @@ public class GetGoogleKeywords {
 
                 driver.findElement(By.cssSelector("input[name=q]")).sendKeys(str + " " + sub + " " + x);
                 List<WebElement> li = driver.findElements(By.xpath("//ul[@role='listbox']//li"));
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 for (int co = 0; co < li.size(); co++) {
                     try{
                     d = d + li.get(co).getText().replace(str,"").replace("how","How").trim() + " in " + str  + "\r\n";
@@ -72,7 +72,7 @@ public class GetGoogleKeywords {
             }
 
             System.out.println(d);
-            String filePath = "C:\\Users\\PC\\Videos\\" + str + ".txt";
+            String filePath = "C:\\Users\\PC\\Videos\\video-text\\" + str + ".txt";
 
             if ((new File(filePath)).exists())
                 (new File(filePath)).delete();
